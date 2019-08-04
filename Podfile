@@ -7,6 +7,7 @@ target 'UT-Demo' do
 
   # Pods for UT-Demo
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 
   target 'UT-DemoUITests' do
     inherit! :search_paths
