@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.bindValue()
         self.updateUI()
+        
     }
     
     private func bindValue() {
@@ -50,4 +51,22 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(repoVC, animated: true)
     }
 }
-
+extension LoginViewController: LoginViewControllerProtocol {
+    func clearEmailField() {
+        self.emailTextField.text = ""
+    }
+    
+    func clearPasswordField() {
+        self.passwordTextField.text = ""
+    }
+    
+    func enableLoginButton(_ status: Bool) {
+        self.loginButton.isEnabled = status
+        self.loginButton.alpha = status ? 1 : 0.5
+    }
+    
+    func hideKeyboard() {
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+    }
+}
