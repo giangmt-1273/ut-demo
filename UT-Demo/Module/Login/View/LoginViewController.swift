@@ -21,9 +21,11 @@ class LoginViewController: UIViewController {
         self.bindValue()
         self.updateUI()
         
+        self.viewModel.performInitialViewSetup()
     }
     
     private func bindValue() {
+        guard let email = emailTextField else { return }
         emailTextField.bind { [weak self] (email) in
             guard let strongSelf = self else { return }
             strongSelf.viewModel.email.value = email
@@ -38,6 +40,7 @@ class LoginViewController: UIViewController {
     }
     
     private func updateUI() {
+        guard let loginBtn = self.loginButton else { return }
         self.viewModel.enableLogin.bindAndFire {[weak self] (enable) in
             guard let strongSelf = self else { return }
             strongSelf.loginButton.isEnabled = enable
@@ -69,4 +72,33 @@ extension LoginViewController: LoginViewControllerProtocol {
         self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
     }
+    
+    @IBAction func emailDidEndOnExit(_ sender: Any) {
+        viewModel.emailDidEndOnExit()
+    }
+    
+    @IBAction func passwordDidEndOnExit(_ sender: Any) {
+        viewModel.passwordDidEndOnExit()
+    }
+    
+    @IBAction func login(_ sender: Any) {
+        viewModel.login(email: emailTextField.text, password: passwordTextField.text)
+    }
 }
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        if textField == self.emailTextField {
+            self.viewModel.emailTextFieldUpdated(textField.text)
+        }
+        
+        if textField == self.passwordTextField {
+            self.viewModel.passwordTextFieldUpdated(textField.text)
+        }
+        
+        return true
+    }
+}
+

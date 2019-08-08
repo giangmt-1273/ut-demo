@@ -25,6 +25,7 @@
 		BDFD8FF022F5DFBE004BD9A8 /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8FEF22F5DFBE004BD9A8 /* HelperManager.swift */; };
 		BDFD8FF322F5E027004BD9A8 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8FF222F5E027004BD9A8 /* Constant.swift */; };
 		BDFD8FF622F5F051004BD9A8 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8FF522F5F051004BD9A8 /* TextField.swift */; };
+		C3ACFED222FBCB8000C02445 /* UITextFieldStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACFED122FBCB8000C02445 /* UITextFieldStub.swift */; };
 		C3C9FC8F22F92ADF00A05FC9 /* UT-DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C9FC8E22F92ADF00A05FC9 /* UT-DemoTests.swift */; };
 		C3C9FC9122F92BCF00A05FC9 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C9FC9022F92BCF00A05FC9 /* LoginViewControllerTest.swift */; };
 		C3C9FC9522F92CF500A05FC9 /* LoginViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C9FC9422F92CF500A05FC9 /* LoginViewControllerProtocol.swift */; };
@@ -98,6 +99,7 @@
 		BDFD8FEF22F5DFBE004BD9A8 /* HelperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
 		BDFD8FF222F5E027004BD9A8 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BDFD8FF522F5F051004BD9A8 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		C3ACFED122FBCB8000C02445 /* UITextFieldStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldStub.swift; sourceTree = "<group>"; };
 		C3C9FC8E22F92ADF00A05FC9 /* UT-DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UT-DemoTests.swift"; sourceTree = "<group>"; };
 		C3C9FC9022F92BCF00A05FC9 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
 		C3C9FC9422F92CF500A05FC9 /* LoginViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				C3C9FC8C22F92AB500A05FC9 /* Mock */,
+				C3ACFED022FBCB3B00C02445 /* Stub */,
 				C3C9FC9A22F92E3700A05FC9 /* LoginTest */,
 				BD249BDA22F7D4D800B13553 /* Info.plist */,
 				C3C9FC8E22F92ADF00A05FC9 /* UT-DemoTests.swift */,
@@ -317,6 +320,14 @@
 				BDC34A7422F6AD9500F19E39 /* View */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		C3ACFED022FBCB3B00C02445 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				C3ACFED122FBCB8000C02445 /* UITextFieldStub.swift */,
+			);
+			path = Stub;
 			sourceTree = "<group>";
 		};
 		C3C9FC8C22F92AB500A05FC9 /* Mock */ = {
@@ -536,6 +547,7 @@
 				C3C9FCB222F95FE100A05FC9 /* MockEmailAddressValidator.swift in Sources */,
 				C3C9FCAF22F95E3800A05FC9 /* EmailAddressValidator.swift in Sources */,
 				C3C9FCA522F951D100A05FC9 /* RepoViewModel.swift in Sources */,
+				C3ACFED222FBCB8000C02445 /* UITextFieldStub.swift in Sources */,
 				C3C9FCBE22F96B9700A05FC9 /* MockLoginController.swift in Sources */,
 				C3C9FCA022F9517800A05FC9 /* LoginViewController.swift in Sources */,
 				C3C9FCA922F9520A00A05FC9 /* RepoRouter.swift in Sources */,

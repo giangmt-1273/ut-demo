@@ -37,11 +37,6 @@
                BlueprintName = "UT-DemoTests"
                ReferencedContainer = "container:UT-Demo.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "LoginViewControllerTest/testViewDidLoad_Calls_PerformInitialSetup_OnViewModel()">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
