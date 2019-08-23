@@ -8,5 +8,5 @@
 
 import Foundation
 struct Constant {
-    
+    static var perPage = 10
 }

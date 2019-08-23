@@ -20,6 +20,8 @@ enum RequestResult {
     case cancelled
 }
 
+
+
 public enum HttpStatusCode: Int {
     case ok = 200
     case created = 201
@@ -38,6 +40,7 @@ public enum HttpStatusCode: Int {
     case cancelled = -999
     case timeOut = -1001
     case cannotFindHost = -1003
+    case validationFail = 422
 
     init?(statusCode: Int?) {
         guard let _statusCode = statusCode else {
@@ -48,9 +51,19 @@ public enum HttpStatusCode: Int {
 }
 
 public struct ResponseObject {
-    let data: AnyObject?
-    let statusCode: HttpStatusCode? // code error, incase success
-    let result: RequestResult
+    var data: AnyObject?
+    var statusCode: HttpStatusCode? // code error, incase success
+    var result: RequestResult?
+    init() {
+        
+    }
+    
+    
+    init(data: AnyObject?, statusCode: HttpStatusCode?, result: RequestResult) {
+        self.data = data
+        self.statusCode = statusCode
+        self.result = result
+    }
 }
 
 struct ApiClient {

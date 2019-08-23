@@ -18,7 +18,7 @@ class RepoTableViewCell: UITableViewCell {
         
     }
 
-    func configCell(repo: Repo) {
-        nameLabel.text = repo.fullname
+    func configCell(repo: Repo?) {
+        nameLabel.text = repo?.fullname
     }
 }
