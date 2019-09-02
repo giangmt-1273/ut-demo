@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 class Repo: NSObject {
-    var id = 0
+    var id: Int?
     var name: String?
     var fullname: String?
     var urlString: String?
