@@ -20,29 +20,42 @@ class RepoTests: XCTestCase {
     }
 
     func testRepo_ValidJson_CanBeInstantiated() {
-        guard let url = Bundle(for: type(of: self)).url(forResource: "invalidJson", withExtension: "json") else {
-            XCTFail("Missing file: validJson.json")
-            return
-        }
-        guard let data = try? Data(contentsOf: url, options: .mappedIfSafe) else {
+        guard let url = Bundle(for: type(of: self)).url(forResource: "validJson", withExtension: "json"),
+            let data = try? Data(contentsOf: url, options: .mappedIfSafe) else {
             XCTFail("Missing file: validJson.json")
             return
         }
         let repo = Repo(jsonObject: data)
-        XCTAssertNotNil(repo)
+        XCTAssertNotNil(repo?.id)
     }
     
     func testParserJson() {
-        guard let url = Bundle(for: type(of: self)).url(forResource: "validJson", withExtension: "json") else {
-            XCTFail("Missing file: validJson.json")
-            return
-        }
-        guard let data = try? Data(contentsOf: url, options: .mappedIfSafe) else {
+        guard let url = Bundle(for: type(of: self)).url(forResource: "validJson", withExtension: "json"),
+            let data = try? Data(contentsOf: url, options: .mappedIfSafe) else {
             XCTFail("Missing file: validJson.json")
             return
         }
         let repo = Repo(jsonObject: data)
         XCTAssertEqual(repo!.fullname, "vsouza/awesome-ios")
         XCTAssertEqual(repo!.id, 21700699)
+    }
+    
+    func testPaserFromAny_Valid_Object() {
+        var dic: [String: Any] = [:]
+        dic["id"] = 1
+        dic["full_name"] = "maigiang08"
+        let repo = Repo(jsonObject: dic)
+        XCTAssertEqual(repo!.fullname, "maigiang08")
+        XCTAssertEqual(repo!.id, 1)
+    }
+    
+    func testPaserArrayJson_returnAmountDataRepo() {
+        guard let url = Bundle(for: type(of: self)).url(forResource: "validArrayRepo", withExtension: "json"),
+            let data = try? Data(contentsOf: url, options: .mappedIfSafe) else {
+                XCTFail("Missing file: validArrayRepo.json")
+                return
+        }
+        let repoArray = Repo.fromDatas(jsonObject: data)
+        XCTAssertEqual(repoArray.count, 10)
     }
 }
