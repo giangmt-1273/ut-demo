@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.bindValue()
         self.updateUI()
+        let p = Pagination()
     }
     
     private func bindValue() {

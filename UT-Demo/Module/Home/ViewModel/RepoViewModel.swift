@@ -10,20 +10,48 @@ import UIKit
 import Alamofire
 
 class RepoViewModel: NSObject {
-    var repos = Dynamic<[Repo]>([])
+    var repos = Dynamic<[Repo?]>([])
+    var error = Dynamic<ResponseObject?>(ResponseObject())
+    var beginFetchData = true
+    var pagnigation = Pagination()
+    var perPage = 10
+    var urlRequest: URLRequestConvertible?
     
-    func getRepos() {
+    func getRepos(completion: @escaping ResponseHandler) {
         var params = Parameters()
         params["q"] = "language:swift"
-        params["page"] = 1
-        params["per_page"] = 10
+        params["page"] = pagnigation.currentPage + 1
+        params["per_page"] = perPage
+        urlRequest = RepoRouter.getRepos(parameters: params)
         _ = ApiClient.request(urlRequest: RepoRouter.getRepos(parameters: params)) { [weak self] (response) in
             guard let strongSelf = self else { return }
             if response?.result == .success {
-                strongSelf.repos.value = Repo.fromDatas(jsonObject: response?.data)
+                let repoArr = Repo.fromDatas(jsonObject: response?.data)
+                strongSelf.repos.value.append(contentsOf: repoArr)
+                
+                // update current Page, total Page
+                strongSelf.pagnigation
+                    .updateCurrentPage(strongSelf.repos.value.count)
+                strongSelf.pagnigation.getTotalPage(jsonObject: response?.data)
+                completion(response)
+                
             } else {
-                strongSelf.repos.value = []
+                if response?.statusCode == HttpStatusCode.validationFail {
+                    var data: [String: AnyObject] = [:]
+                    data["id"] = 1 as AnyObject
+                    data["full_name"] = "lala" as AnyObject
+                    strongSelf.repos
+                        .value.append(Repo.init(jsonObject: data))
+                    completion(response)
+                } else {
+                    strongSelf.error.value = response
+                    completion(response)
+                }
             }
+            
         }
+        
     }
+    
+
 }
